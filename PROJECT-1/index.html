@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <center>
+            <h1>API Translator</h1>
+        </center>
+
+
+
+        <div class="row">
+
+            <div class="col-sm-2">
+
+            </div>
+
+
+            <div class="col-sm-3" style="background-color:lavenderblush;" align="center">
+
+
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            Source Language
+                        </td>
+                        &nbsp;
+                        <td>
+
+                            <select id="ddlSource">
+                                <option value="ZH">Chinese (Mandarin)</option>
+                                <option value="CS">Czech</option>
+                                <option value="DA">Danish</option>
+                                <option value="NL">Dutch</option>
+                                <option value="EN" selected="selected">English</option>
+                                <option value="ET">Estonian</option>
+                                <option value="FR">French</option>
+                                <option value="KA">Georgian</option>
+                                <option value="DE">German</option>
+                                <option value="HI">Hindi</option>
+                                <option value="HU">Hungarian</option>
+                                <option value="LA">Latin</option>
+                                <option value="LV">Latvian</option>
+                                <option value="LT">Lithuanian</option>
+                                <option value="SR">Serbian</option>
+                                <option value="CY">Welsh</option>
+                                <option value="XH">Xhosa</option>
+                                <option value="TH">Thai</option>
+                            </select>
+                            <br>
+                        </td>
+                        <td>
+                        </td>
+                        <tr>
+                            <td colspan="2">
+
+                                <br>
+                                <textarea id="txtSource" rows="10" cols="35"></textarea>
+
+                            </td>
+                        </tr>
+                    </tr>
+            </div>
+            </table>
+        </div>
+
+
+        <div class="col-sm-2 " align="center">
+            <div align="center" style="padding: 12px 28px; border-radius:12px;">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button type="button" id="btnTranslate" style="border-radius:5px; background-color: rgb(243, 181, 224)">Translate</button>
+            </div>
+
+        </div>
+
+        <div class="col-sm-3" style="background-color:lavenderblush;" align="center">
+
+
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        Target Language
+                    </td>
+                    &nbsp;
+                    <td>
+                        <select id="ddlTarget">
+                            <option value="ZH">Chinese (Mandarin)</option>
+                            <option value="CS">Czech</option>
+                            <option value="DA">Danish</option>
+                            <option value="NL">Dutch</option>
+                            <option value="EN">English</option>
+                            <option value="ET">Estonian</option>
+                            <option value="FR" selected="selected">French</option>
+                            <option value="KA">Georgian</option>
+                            <option value="DE">German</option>
+                            <option value="HI">Hindi</option>
+                            <option value="HU">Hungarian</option>
+                            <option value="LA">Latin</option>
+                            <option value="LV">Latvian</option>
+                            <option value="LT">Lithuanian</option>
+                            <option value="SR">Serbian</option>
+                            <option value="CY">Welsh</option>
+                            <option value="XH">Xhosa</option>
+                            <option value="TH">Thai</option>
+                        </select>
+                    </td>
+                    <br>
+                    </td>
+                    <td>
+                    </td>
+                    <tr>
+                        <td colspan="2">
+
+                            <br>
+                            <textarea id="txtTarget" rows="10" cols="35"></textarea>
+
+                        </td>
+                    </tr>
+                </tr>
+        </div>
+        </table>
+
+        <div class="col-sm-2">
+
+        </div>
+
+
+    </div>
+
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#btnTranslate").click(function () {
+            var url = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyBipSMbtQTzmy0kFnTEEuN0tNOos7qeX4s";
+            url += "&source=" + $("#ddlSource").val();
+            url += "&target=" + $("#ddlTarget").val();
+            url += "&q=" + escape($("#txtSource").val());
+            $.get(url, function (data, status) {
+                $("#txtTarget").val(data.data.translations[0].translatedText);
+            });
+        });
+    </script>
+
+
+
+
+
+
+    </div>
+    </div>
+    <div class="col-sm-2" style="background-color:lavender;">
+
+
+    </div>
+
+    </div>
+    </div>
+
+</body>
+
+</html>
